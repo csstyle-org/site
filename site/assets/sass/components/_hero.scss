@@ -1,0 +1,39 @@
+@include component(hero) {
+    @apply flex flex-col justify-between;
+    @apply min-h-screen;
+    @apply py-96;
+    @apply leading-lg;
+    @include font-size(18px);
+
+    @each $heading, $size in $heading-font-sizes {
+        #{$heading}, .#{$heading} {
+            @include font-size($size * (18 / 16));
+        }
+    }
+
+    @include part(section) {
+        @apply my-32;
+        @include policy(margin);
+    }
+
+    @include part(more) {
+        @include wait-animate((
+            animationName: pulse,
+            keyframes: (
+                0: (
+                    transform: scale3d(1, 1, 1)
+                ),
+                50: (
+                    transform: scale3d(1.05, 1.05, 1.05)
+                ),
+                100: (
+                    transform: scale3d(1, 1, 1)
+                ),
+            ),
+            duration: 1,
+            waitTime: .5,
+            timingFunction: ease,
+            iterationCount: infinite
+        ));
+    }
+}

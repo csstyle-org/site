@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+}
+
+body {
+    background: #222;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    font-weight: $font-weight-base;
+    line-height: $line-height-base;
+    text-rendering: optimizeLegibility;
+}
+
+b, strong {
+    font-weight: $fw-bold;
+}
+
+label[for], label[data-set] {
+    cursor: pointer;
+}
+
+@each $heading, $size in $heading-font-sizes {
+    #{$heading}, .#{$heading} {
+        @include font-size($size);
+    }
+}
+
+::selection {
+    background-color: rgba($color-primary, .8);
+    color: color-contrast($color-primary);
+}
+
+#container {
+    min-height: 100%;
+    background: $color-bg;
+    color: $color-text;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+#{headings()} {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+}

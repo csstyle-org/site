@@ -1,0 +1,44 @@
+$gray-100: #faf9f8;
+$gray-200: #efece9;
+$gray-300: #e6e2de;
+$gray-400: #dad4ce;
+$gray-500: #bdb5ad;
+$gray-600: #7d756c;
+$gray-700: #575049;
+$gray-800: #403a34;
+$gray-900: #292521;
+
+$color-light: #ededed;
+$color-dark: #1f1f1f;
+
+$color-primary: #f92672;
+$color-secondary: #6bd9ed;
+$color-accent: #a7e040;
+
+$color-text: #626262;
+$color-text-inverse: #9b9b9b;
+$color-text-muted: #acb1b5;
+$color-text-muted-inverse: #454a4e;
+
+$code-color: #f6f8fa;
+$link-color: #a7e040;
+$border-color: $gray-200;
+$border-color-inverse: $gray-800;
+
+$color-contrast-offset: 40%;
+
+$font-family-base: 'Open Sans', $font-stack-system;
+$font-weight-base: $fw-normal;
+$line-height-base: 1.5;
+
+$headings-font-family: 'Montserrat', $font-stack-system;
+$headings-font-weight: $fw-light;
+
+$heading-font-sizes: (
+    h1: 32px,
+    h2: 28px,
+    h3: 24px,
+    h4: 20px,
+    h5: 18px,
+    h6: 16px,
+);

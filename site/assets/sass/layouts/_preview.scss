@@ -1,0 +1,23 @@
+@include location(preview) {
+    @include tweak(hidden) {
+        display: none;
+    }
+
+    @include location(has-errors) {
+        @include tweak(hidden) {
+            display: block;
+        }
+    }
+
+    @include location(has-error) {
+        @include component(form) {
+            @include part(feedback) {
+                color: #dc3545;
+            }
+
+            @include part(control) {
+                border-color: #dc3545;
+            }
+        }
+    }
+}

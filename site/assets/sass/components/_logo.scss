@@ -1,0 +1,15 @@
+@include component(logo) {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    @include font-size(128px);
+    @apply leading-none;
+
+    @include part(dashes, cs, style) {
+        @apply relative;
+        top: -.7rem;
+    }
+
+    @include part(cs) {
+        @apply text-primary;
+    }
+}

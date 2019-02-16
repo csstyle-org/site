@@ -1,0 +1,25 @@
+@include component(label) {
+    @apply uppercase;
+    @include font-size(12px);
+    color: $color-text-muted;
+
+    @include important {
+        + {
+            pre[class*="language-"], .code-toolbar pre[class*="language-"] {
+                @apply mt-4;
+            }
+        }
+    }
+
+    + {
+        @include component(result) {
+            @apply mt-4;
+        }
+    }
+
+    @include location(preview) {
+        @apply py-2 px-4;
+        background-color: $color-primary;
+        color: #fff;
+    }
+}

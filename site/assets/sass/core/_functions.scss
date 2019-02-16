@@ -1,0 +1,63 @@
+@function headings($start: 0, $end: 0){
+    @if $end == 0 {
+        @if $start == 0 {
+            $start: 1;
+            $end: 6;
+        } @else {
+            $end: $start;
+            $start: 1;
+        }
+    }
+
+    $string: "";
+    @for $i from $start through $end{
+        $string: $string + "h" + $i + ", .h" + $i;
+
+        @if $i < $end{
+            $string: $string + ", ";
+        }
+    }
+
+    @return unquote($string);
+}
+
+@function _brightness($color) {
+    @return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+}
+
+$color-contrast-offset: 0% !default;
+$light-contrast-brightness: _brightness(#fff);
+$dark-contrast-brightness: _brightness(#000);
+
+@function which-color-contrast($color) {
+    @if $color == null {
+        @return null;
+    } @else {
+        $color-brightness: _brightness($color);
+
+        @return abs($color-brightness - $light-contrast-brightness) + ($color-contrast-offset / 2) > abs($color-brightness - $dark-contrast-brightness) - ($color-contrast-offset / 2);
+    }
+}
+
+$dark-contrast-default: $black !default;
+$light-contrast-default: $white !default;
+
+@function color-contrast($color, $dark: $dark-contrast-default, $light: $light-contrast-default) {
+    @if $color == null {
+        @return null;
+    } @else {
+        @return if(which-color-contrast($color), $light, $dark);
+    }
+}
+
+$em-base-size: 16px !default;
+
+@function calculate-em($size, $base: $em-base-size) {
+    $em-size: $size / $base;
+    @return $em-size * 1em;
+}
+
+@function calculate-rem($size, $base: $em-base-size) {
+    $rem-size: $size / $base;
+    @return $rem-size * 1rem;
+}

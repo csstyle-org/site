@@ -1,0 +1,148 @@
+@mixin position($position, $args) {
+    position: $position;
+    @each $pos, $val in $args{
+        #{$pos}: $val;
+    }
+}
+
+@mixin absolute($args) {
+    @include position(absolute, $args);
+}
+
+@mixin fixed($args) {
+    @include position(fixed, $args);
+}
+
+@mixin relative($args) {
+    @include position(relative, $args);
+}
+
+@mixin rs($prop, $size) {
+  // Cache $size unit
+  $size-unit: if(type-of($size) == "number", unit($size), false);
+
+  // If $size isn't a number (like inherit) or $size has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
+  @if not $size-unit or $size-unit != "" and $size-unit != "px" and $size-unit != "rem" or $size == 0 {
+    #{$prop}: $size;
+  }
+  @else {
+    // Variables for storing static and fluid rescaling
+    $rs-static: null;
+    $rs-fluid: null;
+
+    // Remove px-unit from $size for calculations
+    @if $size-unit == "px" {
+      $size: $size / ($size * 0 + 1);
+    }
+    @else if $size-unit == "rem" {
+      $size: $size / ($size * 0 + 1 / $rfs-rem-value);
+    }
+
+    // Set default font-size
+    @if $rfs-font-size-unit == rem {
+      $rs-static: #{$size / $rfs-rem-value}rem;
+    }
+    @else if $rfs-font-size-unit == px {
+      $rs-static: #{$size}px;
+    }
+    @else {
+      @error "`#{$rfs-font-size-unit}` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`.";
+    }
+
+    // Only add media query if font-size is bigger as the minimum font-size
+    // If $rfs-factor == 1, no rescaling will take place
+    @if $size > $rfs-base-font-size and $enable-responsive-font-sizes {
+      $min-width: null;
+      $variable-unit: null;
+
+      // Calculate minimum font-size for given font-size
+      $size-min: $rfs-base-font-size + ($size - $rfs-base-font-size) / $rfs-factor;
+
+      // Calculate difference between given font-size and minimum font-size for given font-size
+      $size-diff: $size - $size-min;
+
+      // Base font-size formatting
+      // No need to check if the unit is valid, because we did that before
+      $min-width: if($rfs-font-size-unit == rem, #{$size-min / $rfs-rem-value}rem, #{$size-min}px);
+
+      // If two-dimensional, use smallest of screen width and height
+      $variable-unit: if($rfs-two-dimensional, vmin, vw);
+
+      // Calculate the variable width between 0 and $rfs-breakpoint
+      $variable-width: #{$size-diff * 100 / $rfs-breakpoint}#{$variable-unit};
+
+      // Set the calculated size.
+      $rs-fluid: calc(#{$min-width} + #{$variable-width});
+    }
+
+    // Rendering
+    @if $rs-fluid == null {
+      // Only render static size if no fluid size is available
+      #{$prop}: $rs-static;
+    }
+    @else {
+      $mq-value: null;
+
+      // RFS breakpoint formatting
+      @if $rfs-breakpoint-unit == em or $rfs-breakpoint-unit == rem {
+        $mq-value: #{$rfs-breakpoint / $rfs-rem-value}#{$rfs-breakpoint-unit};
+      }
+      @else if $rfs-breakpoint-unit == px {
+        $mq-value: #{$rfs-breakpoint}px;
+      }
+      @else {
+        @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.";
+      }
+
+      @if $rfs-class == "disable" {
+        // Adding an extra class increases specificity,
+        // which prevents the media query to override the font size
+        &,
+        .disable-responsive-size &,
+        &.disable-responsive-size {
+          #{$prop}: $rs-static;
+        }
+      }
+      @else {
+        #{$prop}: $rs-static;
+      }
+
+      @if $rfs-two-dimensional {
+        @media (max-width: #{$mq-value}), (max-height: #{$mq-value}) {
+          @if $rfs-class == "enable" {
+            .enable-responsive-size &,
+            &.enable-responsive-size {
+              #{$prop}: $rs-fluid;
+            }
+          }
+          @else {
+            #{$prop}: $rs-fluid;
+          }
+
+          @if $rfs-safari-iframe-resize-bug-fix {
+            // stylelint-disable-next-line length-zero-no-unit
+            min-width: 0vw;
+          }
+        }
+      }
+      @else {
+        @media (max-width: #{$mq-value}) {
+          @if $rfs-class == "enable" {
+            .enable-responsive-size &,
+            &.enable-responsive-size {
+              #{$prop}: $rs-fluid;
+            }
+          }
+          @else {
+            #{$prop}: $rs-fluid;
+          }
+
+          @if $rfs-safari-iframe-resize-bug-fix {
+            // stylelint-disable-next-line length-zero-no-unit
+            min-width: 0vw;
+          }
+        }
+      }
+    }
+  }
+}

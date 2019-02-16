@@ -1,0 +1,82 @@
+#container {
+    > {
+        footer {
+            border-top: 5px solid $color-secondary;
+        }
+    }
+}
+
+a {
+    @apply transition-colors;
+}
+
+em {
+    @apply text-primary;
+    @apply font-bold;
+    font-style: normal;
+}
+
+#{headings()} {
+    @include margin((2em / 3) null (2em / 3));
+    @include policy(margin);
+
+    a {
+        display: block;
+    }
+}
+
+p {
+    @apply my-24;
+    @include policy(margin);
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+blockquote {
+    @apply p-16;
+    @apply shadow-1;
+    background: $code-color;
+    border-left: 5px solid $color-secondary;
+
+    b, strong {
+        @apply pr-8;
+        color: darken($color-secondary, 40%);
+    }
+}
+
+:not(pre) > code {
+    padding: .1em .2em;
+    border-radius: .3em;
+    background-color: $code-color;
+    text-shadow: 0 1px white;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    tab-size: 4;
+    hyphens: none;
+}
+
+#app {
+    pre[class*="language-"] {
+        @apply my-24;
+        @apply shadow-1;
+    }
+
+    :not(pre) > code[class*="language-"] {
+        padding: .1em .2em;
+    }
+
+    :not(pre) > code[class*="language-"], pre[class*="language-"] {
+        background: $code-color;
+    }
+
+    .line-numbers .line-numbers-rows {
+        top: -2px;
+    }
+}

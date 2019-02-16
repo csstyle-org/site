@@ -1,0 +1,96 @@
+@import 'constants';
+
+// Colours
+$color-white: $white !default;
+$color-light: $gray-100 !default;
+$color-dark: $gray-800 !default;
+$color-black: $black !default;
+
+$color-bg: $color-white !default;
+$color-bg-inverse: $color-dark !default;
+
+$color-text: $color-dark !default;
+$color-text-inverse: $color-light !default;
+
+$color-primary: $blue !default;
+$color-secondary: $gray-600 !default;
+$color-accent: $pink !default;
+
+$color-success: $green !default;
+$color-info: $cyan !default;
+$color-warning: $yellow !default;
+$color-danger: $red !default;
+
+$colors: () !default;
+$colors: map-merge(
+    (
+        white: $color-white,
+        light: $color-light,
+        dark: $color-dark,
+        black: $color-black,
+
+        bg: $color-bg,
+        bg-inverse: $color-bg-inverse,
+
+        text: $color-text,
+        text-inverse: $color-text-inverse,
+
+        primary: $color-primary,
+        secondary: $color-secondary,
+        accent: $color-accent,
+
+        success: $color-success,
+        info: $color-info,
+        warning: $color-warning,
+        danger: $color-danger,
+    ),
+    $colors
+);
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+    (
+        light: $color-light,
+        dark: $color-dark,
+
+        primary: $color-primary,
+        secondary: $color-secondary,
+        accent: $color-accent,
+
+        success: $color-success,
+        info: $color-info,
+        warning: $color-warning,
+        danger: $color-danger,
+    ),
+    $theme-colors
+);
+
+$dark-contrast-default: $color-text !default;
+$light-contrast-default: $color-text-inverse !default;
+
+// Typography
+$font-family-base: $font-stack-helvetica-system !default;
+$font-weight-base: $fw-normal !default;
+$font-size-base: 1rem !default;
+$line-height-base: 1.4 !default;
+
+$headings-font-family: $font-family-base !default;
+$headings-font-weight: $fw-bold !default;
+$headings-line-height: 1.2 !default;
+
+$heading-font-sizes: () !default;
+$heading-font-sizes: map-merge(
+    (
+        h1: 40px,
+        h2: 32px,
+        h3: 28px,
+        h4: 24px,
+        h5: 20px,
+        h6: 18px,
+    ),
+    $heading-font-sizes
+);
+
+// Links
+$link-color: $color-primary !default;
+$link-hover-color: darken($link-color, 15%) !default;

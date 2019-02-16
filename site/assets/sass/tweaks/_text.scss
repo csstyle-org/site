@@ -1,0 +1,13 @@
+@include tweak(text) {
+    @include part(left) {
+        text-align: left;
+    }
+
+    @include part(center) {
+        text-align: center;
+    }
+
+    @include part(right) {
+        text-align: right;
+    }
+}

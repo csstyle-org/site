@@ -1,0 +1,8 @@
+@include tweak(bg) {
+    @each $color, $hex in $theme-colors {
+        @include part($color) {
+            background-color: $hex;
+            color: color-contrast($hex);
+        }
+    }
+}

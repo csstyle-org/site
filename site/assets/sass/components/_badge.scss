@@ -1,0 +1,11 @@
+@include component(badge) {
+    display: inline-block;
+    @apply mx-4 py-2 px-4;
+    line-height: 1;
+    border-radius: 4px;
+    color: $white;
+    background-color: $color-accent;
+    @include font-size(12px);
+    font-weight: $fw-bold;
+    pointer-events: none;
+}

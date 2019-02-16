@@ -1,0 +1,6 @@
+@include location(preview) {
+    @include tweak(rounded) {
+        border-radius: 4px;
+        overflow: hidden;
+    }
+}

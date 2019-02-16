@@ -1,0 +1,32 @@
+// Config
+$tailwind: true;
+
+// Base styles
+@tailwind preflight;
+
+@import '~bourbon/core/bourbon';
+@import 'core/constants';
+@import 'variables';
+@import 'core/core';
+
+// Components
+@tailwind components;
+
+// Utilities
+@tailwind utilities;
+
+// App
+@import 'mixins';
+@import 'base';
+@import 'policies';
+@import 'components/*';
+@import 'layouts/*';
+@import 'tweaks/*';
+
+@include tweak(shadow) {
+    box-shadow: 0 2px 5px 0 rgba(#000, .16), 0 2px 10px 0 rgba(#000, .12);
+
+    &:not(#{component(nav)}#{option(fixed)}) {
+        z-index: 5;
+    }
+}

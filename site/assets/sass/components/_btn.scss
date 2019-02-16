@@ -1,0 +1,45 @@
+@include location(preview) {
+    @include component(btn) {
+        display: inline-block;
+        position: relative;
+        padding: .5em 1em;
+        color: color-contrast($color-secondary, #1f1f1f);
+        background-color: $color-secondary;
+        transition: background-color .2s;
+
+        &:hover {
+            background-color: darken($color-secondary, 10%);
+        }
+
+        @include option(action) {
+            background-color: $color-accent;
+            color: color-contrast($color-accent, #1f1f1f);
+
+            &:hover {
+                background-color: darken($color-accent, 10%);
+            }
+        }
+
+        @include option(has-icon) {
+            // padding-left: icon.width + padding-right;
+            padding-left: 1.5em + .5em * 2 + 1em;
+        }
+
+        @include part(icon) {
+            display: inline-block;
+            @include absolute((top: 0, bottom: 0, left: 0));
+            // width: line-height + padding-top * 2;
+            width: 1.5em + .5em * 2;
+            padding-right: 4px;
+            background-color: rgba(#000, .1);
+
+            @include option(lower-right-pencil) {
+                &:before {
+                    content: '\270E';
+                    font-size: 1.5em;
+                    line-height: 1.7;
+                }
+            }
+        }
+    }
+}

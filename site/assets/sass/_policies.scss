@@ -1,0 +1,19 @@
+@include add-policy(margin) {
+    &:first-child {
+        @apply mt-0;
+    }
+    
+    &:last-child {
+        @apply mb-0;
+    }
+}
+
+@include add-policy(padding) {
+    &:first-child {
+        @apply pt-0;
+    }
+    
+    &:last-child {
+        @apply pb-0;
+    }
+}

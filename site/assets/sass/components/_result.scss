@@ -1,0 +1,6 @@
+@include component(result) {
+    @apply my-24 p-24;
+    @apply shadow-1;
+    text-align: center;
+    background: $code-color;
+}
