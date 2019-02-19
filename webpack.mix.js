@@ -1,7 +1,10 @@
-let argv = require('yargs').argv;
-let mix = require('laravel-mix');
-let build = require('./tasks/build.js');
-let mix_tailwind = require('laravel-mix-tailwind');
+const argv = require('yargs').argv;
+const mix = require('laravel-mix');
+const build = require('./tasks/build.js');
+
+// Mix plugins
+require('laravel-mix-imagemin');
+require('laravel-mix-tailwind');
 
 let env = argv.e || argv.env || 'local';
 let port = argv.p || argv.port || 3000;
@@ -9,7 +12,6 @@ let port = argv.p || argv.port || 3000;
 mix.options({
     clearConsole: false,
 });
-
 mix.setPublicPath('site/content/assets');
 mix.webpackConfig({
     module: {
@@ -35,9 +37,6 @@ mix.webpackConfig({
                 'site/assets/**/*.scss',
                 '!site/content/assets/*'
             ],
-            dirs: [
-                'site/assets/sass',
-            ],
         }),
     ],
 });
@@ -62,9 +61,18 @@ mix.babelConfig({
         }],
     ],
 });
-//
+
 mix.js('site/assets/js/app.js', 'js')
     .tailwind()
     .sass('site/assets/sass/app.scss', 'css')
+    .imagemin(
+        [
+            'img/**/*.@(jpg|jpeg|png|gif|svg)',
+            'favicons/**/*.!(psd)',
+        ],
+        {
+            context: 'site/assets',
+        }
+    )
     .sourceMaps()
     .version();
