@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <!--[if IE 6]>
-    <html id="app" lang="en" class="no-js ie ie-6 crie">
+    <html id="app" lang="en" class="ie ie-6 crie">
 <![endif]-->
 <!--[if IE 7]>
-    <html id="app" lang="en" class="no-js ie ie-7 crie">
+    <html id="app" lang="en" class="ie ie-7 crie">
 <![endif]-->
 <!--[if IE 8]>
-    <html id="app" lang="en" class="no-js ie ie-8 crie">
+    <html id="app" lang="en" class="ie ie-8 crie">
 <![endif]-->
 <!--[if IE 9]>
-    <html id="app" lang="en" class="no-js ie ie-9">
+    <html id="app" lang="en" class="ie ie-9">
 <![endif]-->
 <!--[if !IE]> -->
-<html id="app" lang="en" class="no-js">
+<html id="app" lang="en">
 <!-- <![endif]-->
 <head>
     <title>csstyle</title>
