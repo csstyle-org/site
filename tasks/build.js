@@ -45,6 +45,7 @@ module.exports = {
                     history(),
                 ],
             },
+            watchEvents: ['add', 'change', 'unlink', 'addDir', 'unlinkDir'],
         },
         {
             reload: false,
