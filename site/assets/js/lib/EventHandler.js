@@ -42,7 +42,6 @@ export default class EventHandler {
         el.addEventListener(event, (e) => {
             if (modifiers.includes('self') && e.target !== el) {
                 if (modifiers.includes('prevent') && modifiers.indexOf('prevent') < modifiers.indexOf('self')) {
-                    console.log('prevent');
                     e.preventDefault();
                 }
 
@@ -54,7 +53,6 @@ export default class EventHandler {
             }
 
             if (modifiers.includes('prevent')) {
-                console.log('prevent');
                 e.preventDefault();
             }
 
