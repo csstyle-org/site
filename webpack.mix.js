@@ -3,6 +3,7 @@ const glob = require('glob');
 const mix = require('laravel-mix');
 const build = require('./tasks/build.js');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
+const CsstyleExtractor = require('./csstyle-extractor.js');
 
 // Mix plugins
 require('laravel-mix-imagemin');
@@ -42,6 +43,16 @@ mix.webpackConfig({
         }),
         mix.inProduction() ? new PurgecssPlugin({
             paths: glob.sync('site/content/**/*.@(php|md)'),
+            extractors: [
+                {
+                    extractor: CsstyleExtractor,
+                    extensions: ['html', 'php', 'js', 'md'],
+                },
+            ],
+            whitelist: [
+                'pre',
+                'blockquote',
+            ],
         }) : null,
     ].filter(Boolean),
 });
