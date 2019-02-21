@@ -1,15 +1,16 @@
 export default class Nav {
     constructor() {
-        document.addEventListener('DOMContentLoaded', e => {
+        const onLoad = e => {
             let path = this.constructor.getPath();
 
             if (path) {
                 this.jumpTo(path);
-            } else {
-                this.jumpTo('home');
             }
-        });
+        };
 
+        onLoad();
+
+        window.addEventListener('load', onLoad);
         window.addEventListener('popstate', e => {
             let path = this.constructor.getPath();
 
