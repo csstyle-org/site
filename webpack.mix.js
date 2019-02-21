@@ -74,5 +74,5 @@ mix.js('site/assets/js/app.js', 'js')
             context: 'site/assets',
         }
     )
-    .sourceMaps()
+    .sourceMaps(true, 'source-map')
     .version();
