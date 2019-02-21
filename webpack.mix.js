@@ -1,6 +1,8 @@
 const argv = require('yargs').argv;
+const glob = require('glob');
 const mix = require('laravel-mix');
 const build = require('./tasks/build.js');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 // Mix plugins
 require('laravel-mix-imagemin');
@@ -38,7 +40,10 @@ mix.webpackConfig({
                 '!site/content/assets/*'
             ],
         }),
-    ],
+        mix.inProduction() ? new PurgecssPlugin({
+            paths: glob.sync('site/content/**/*.@(php|md)'),
+        }) : null,
+    ].filter(Boolean),
 });
 mix.babelConfig({
     'plugins': [

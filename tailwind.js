@@ -934,7 +934,6 @@ module.exports = {
         'slow': 'all 2s ease',
       }
     }),
-    require('tailwindcss-animatecss')(),
   ],
 
 
