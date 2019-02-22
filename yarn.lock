@@ -2619,6 +2619,11 @@ csso@^3.5.0:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
+csstyle@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/csstyle/-/csstyle-2.0.1.tgz#a36aacfcf324e46eab7be2b0f28730aee9046385"
+  integrity sha512-iyrMVWenol9g/9xp6KrBMqDH58LxHpZIxznC/eMBAXw5TQsZ1PAsWGQkQ2bLYWb8cSCSsUdz+dOYXRH4BnUQYA==
+
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
